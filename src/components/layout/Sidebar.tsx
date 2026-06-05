@@ -4,12 +4,12 @@ import { LayoutDashboard, FileText, Boxes, Briefcase, Star, Settings, X } from '
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { to: '/dashboard', icon: LayoutDashboard, key: 'dashboard' },
-  { to: '/rfqs', icon: FileText, key: 'rfqs' },
-  { to: '/resources', icon: Boxes, key: 'resources' },
-  { to: '/jobs', icon: Briefcase, key: 'jobs' },
-  { to: '/reviews', icon: Star, key: 'reviews' },
-  { to: '/settings', icon: Settings, key: 'settings' },
+  { to: '/dashboard', icon: LayoutDashboard, key: 'dashboard', tourId: undefined },
+  { to: '/rfqs', icon: FileText, key: 'rfqs', tourId: 'tour-sidebar-rfqs' },
+  { to: '/resources', icon: Boxes, key: 'resources', tourId: undefined },
+  { to: '/jobs', icon: Briefcase, key: 'jobs', tourId: 'tour-sidebar-jobs' },
+  { to: '/reviews', icon: Star, key: 'reviews', tourId: 'tour-sidebar-reviews' },
+  { to: '/settings', icon: Settings, key: 'settings', tourId: undefined },
 ]
 
 interface SidebarProps {
@@ -54,10 +54,11 @@ export function Sidebar({ open, onClose }: SidebarProps) {
 
       {/* Nav */}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-        {navItems.map(({ to, icon: Icon, key }) => (
+        {navItems.map(({ to, icon: Icon, key, tourId }) => (
           <NavLink
             key={to}
             to={to}
+            id={tourId}
             onClick={onClose}
             className={({ isActive }) =>
               cn(

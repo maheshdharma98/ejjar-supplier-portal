@@ -1,11 +1,12 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { FileText, Briefcase, Boxes, Star, ExternalLink } from 'lucide-react'
+import { FileText, Briefcase, Boxes, Star, ExternalLink, Play } from 'lucide-react'
 import { format } from 'date-fns'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { DemoTour } from '@/components/DemoTour'
 import { rfqs, jobs, resources, reviews, CURRENT_SUPPLIER_ID, maskContractor } from '@/utils/mockData'
 
 const JOB_STATUS_VARIANT: Record<string, 'default' | 'success' | 'warning' | 'danger' | 'info' | 'outline'> = {
@@ -38,6 +39,7 @@ const STATUS_LABEL: Record<string, string> = {
 export default function Dashboard() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const [tourRunning, setTourRunning] = useState(false)
 
   const myReviews = useMemo(() => reviews.filter((r) => r.supplier_id === CURRENT_SUPPLIER_ID), [])
   const avgRating = myReviews.length
@@ -70,12 +72,24 @@ export default function Dashboard() {
 
   return (
     <div className="w-full min-w-0 space-y-6">
-      <div>
+      <DemoTour run={tourRunning} onEnd={() => setTourRunning(false)} />
+
+      <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-900">{t('dashboard.title')}</h1>
+        <Button
+          id="tour-start-btn"
+          variant="outline"
+          size="sm"
+          className="gap-2 border-[#1A4FBA] text-[#1A4FBA] hover:bg-[#1A4FBA] hover:text-white transition-colors"
+          onClick={() => setTourRunning(true)}
+        >
+          <Play className="h-3.5 w-3.5" />
+          Start Tour
+        </Button>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div id="tour-kpi-cards" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map(({ label, value, icon: Icon, color }) => (
           <Card key={label}>
             <CardContent className="p-6">
@@ -179,7 +193,7 @@ export default function Dashboard() {
       })()}
 
       {/* Recent RFQs */}
-      <div>
+      <div id="tour-recent-rfqs">
         <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-base">{t('dashboard.recent_rfqs')}</CardTitle>
@@ -215,7 +229,7 @@ export default function Dashboard() {
                               {STATUS_LABEL[rfq.status] || rfq.status}
                             </Badge>
                           </td>
-                          <td className="px-4 py-3">
+                          <td id="tour-rfq-actions" className="px-4 py-3">
                             <Button variant="ghost" size="icon" onClick={() => navigate(`/rfqs/${rfq.id}`)}>
                               <ExternalLink className="h-3.5 w-3.5" />
                             </Button>
@@ -231,7 +245,7 @@ export default function Dashboard() {
       </div>
 
       {/* Upcoming Jobs */}
-      <div>
+      <div id="tour-upcoming-jobs">
         <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-base">{t('dashboard.upcoming_jobs')}</CardTitle>
