@@ -1,9 +1,9 @@
-import rfqsRaw from '../../../shared/mock/rfqs.json'
-import jobsRaw from '../../../shared/mock/jobs.json'
-import resourcesRaw from '../../../shared/mock/resources.json'
-import reviewsRaw from '../../../shared/mock/reviews.json'
-import contractorsRaw from '../../../shared/mock/contractors.json'
-import suppliersRaw from '../../../shared/mock/suppliers.json'
+import rfqsRaw from '../mock/rfqs.json'
+import jobsRaw from '../mock/jobs.json'
+import resourcesRaw from '../mock/resources.json'
+import reviewsRaw from '../mock/reviews.json'
+import contractorsRaw from '../mock/contractors.json'
+import suppliersRaw from '../mock/suppliers.json'
 import type { RFQ, Job, Resource, Review, Contractor, Supplier } from '../types'
 
 export const rfqs: RFQ[] = rfqsRaw as RFQ[]

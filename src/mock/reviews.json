@@ -1,0 +1,137 @@
+[
+  {
+    "id": "rev-001",
+    "job_id": "job-002",
+    "contractor_id": "con-005",
+    "supplier_id": "sup-005",
+    "rating": 5,
+    "text": "Bahrain Technical Services handled our pallet shipment perfectly. All 50 pallets arrived on time and undamaged. Fragile cargo was treated with care. Will definitely use again for future deliveries.",
+    "created_at": "2026-06-23T10:00:00Z"
+  },
+  {
+    "id": "rev-002",
+    "job_id": "job-003",
+    "contractor_id": "con-006",
+    "supplier_id": "sup-003",
+    "rating": 5,
+    "text": "Emirates Equipment Trading delivered a world-class tower crane service for our Lusail high-rise. The Liebherr was in excellent condition, the operator was highly skilled and certified, and their on-site technical support was exceptional throughout the 11-month contract.",
+    "created_at": "2027-07-05T09:00:00Z"
+  },
+  {
+    "id": "rev-003",
+    "job_id": "job-006",
+    "contractor_id": "con-008",
+    "supplier_id": "sup-009",
+    "rating": 4,
+    "text": "Abu Dhabi Logistics provided reliable Land Cruisers and professional drivers for our desert site inspections. Vehicles were well-maintained and drivers were punctual. Minor issue with documentation at start but resolved quickly.",
+    "created_at": "2026-12-15T10:00:00Z"
+  },
+  {
+    "id": "rev-004",
+    "job_id": "job-009",
+    "contractor_id": "con-006",
+    "supplier_id": "sup-001",
+    "rating": 5,
+    "text": "Gulf Construction Services supplied two outstanding crane operators for our Doha high-rise. Both held CPCS A60 and had extensive Qatar project experience. Zero incidents over 12 months. Highly recommend.",
+    "created_at": "2027-07-20T10:00:00Z"
+  },
+  {
+    "id": "rev-005",
+    "job_id": "job-001",
+    "contractor_id": "con-004",
+    "supplier_id": "sup-004",
+    "rating": 4,
+    "text": "Kuwait Building Solutions provided competent electricians who held the required Kuwait Ministry of Electricity license. Work quality was good and the team was diligent. Would have rated higher but mobilization took 3 days longer than agreed.",
+    "created_at": "2026-11-05T10:00:00Z"
+  },
+  {
+    "id": "rev-006",
+    "job_id": "job-004",
+    "contractor_id": "con-002",
+    "supplier_id": "sup-009",
+    "rating": 5,
+    "text": "Flawless oversized cargo transport. Abu Dhabi Logistics organised multi-axle trailers, police escort, and all Ministry permits for our 45-tonne steel trusses. Night movement was perfectly coordinated. Impressive professionalism.",
+    "created_at": "2026-07-02T12:00:00Z"
+  },
+  {
+    "id": "rev-007",
+    "job_id": "job-005",
+    "contractor_id": "con-004",
+    "supplier_id": "sup-006",
+    "rating": 4,
+    "text": "Qatar Construction Group mobilised their Grove GMK5130-2 to Kuwait with minimal delay. Crane performed excellently throughout the hospital precast lifts. Mobilisation from Qatar added 4 days at start but overall service was professional.",
+    "created_at": "2026-09-10T10:00:00Z"
+  },
+  {
+    "id": "rev-008",
+    "job_id": "job-007",
+    "contractor_id": "con-003",
+    "supplier_id": "sup-013",
+    "rating": 3,
+    "text": "Generators were delivered on schedule and performed adequately. However, one unit experienced a minor fault in week 2 which caused 6 hours of downtime. Support team was responsive but the issue should not have occurred on a relatively new unit.",
+    "created_at": "2026-10-25T10:00:00Z"
+  },
+  {
+    "id": "rev-009",
+    "job_id": "job-008",
+    "contractor_id": "con-002",
+    "supplier_id": "sup-015",
+    "rating": 4,
+    "text": "Al Wakrah Integrated Services delivered the refrigerated vans to Tabuk as promised. Temperature control was consistent throughout. Drivers were friendly and professional. Slight delay in paperwork but no impact on delivery schedule.",
+    "created_at": "2026-09-25T10:00:00Z"
+  },
+  {
+    "id": "rev-010",
+    "job_id": "job-010",
+    "contractor_id": "con-003",
+    "supplier_id": "sup-006",
+    "rating": 5,
+    "text": "Qatar Construction Group's buses are immaculate — 2022 Volvo B8Rs with professional licensed drivers. Our 200+ workers are transported safely every day. On-time performance is 98%+. Extremely satisfied.",
+    "created_at": "2026-08-15T10:00:00Z"
+  },
+  {
+    "id": "rev-011",
+    "job_id": "job-002",
+    "contractor_id": "con-005",
+    "supplier_id": "sup-005",
+    "rating": 5,
+    "text": "Second review confirming excellent service from Bahrain Technical Services. Invoicing was clear and payment terms were flexible. Looking forward to using them for our next shipment.",
+    "created_at": "2026-06-24T14:00:00Z"
+  },
+  {
+    "id": "rev-012",
+    "job_id": "job-003",
+    "contractor_id": "con-006",
+    "supplier_id": "sup-003",
+    "rating": 4,
+    "text": "The tower crane service was excellent overall. One point of feedback — the erection team arrived one day late at the start which slightly delayed our concrete pour schedule. Once operational, performance was flawless for the full duration.",
+    "created_at": "2026-09-01T10:00:00Z"
+  },
+  {
+    "id": "rev-013",
+    "job_id": "job-001",
+    "contractor_id": "con-004",
+    "supplier_id": "sup-004",
+    "rating": 3,
+    "text": "Electricians were technically capable but communication with the camp manager was poor during the first month. Issues were eventually resolved after escalation. Quality of electrical work itself was satisfactory and up to Kuwait MEW standards.",
+    "created_at": "2026-10-20T10:00:00Z"
+  },
+  {
+    "id": "rev-014",
+    "job_id": "job-009",
+    "contractor_id": "con-006",
+    "supplier_id": "sup-001",
+    "rating": 5,
+    "text": "Without question the best crane operators we have worked with in Qatar. Gulf Construction Services went above and beyond — their operators proactively identified a rigging safety concern that we had missed and flagged it before any lift. That kind of initiative is priceless.",
+    "created_at": "2027-08-01T10:00:00Z"
+  },
+  {
+    "id": "rev-015",
+    "job_id": "job-006",
+    "contractor_id": "con-008",
+    "supplier_id": "sup-009",
+    "rating": 2,
+    "text": "While the vehicles themselves were fine, we experienced repeated billing discrepancies throughout the contract. The account team took weeks to resolve each invoice dispute. The drivers and cars were good but the admin experience was frustrating.",
+    "created_at": "2026-12-20T10:00:00Z"
+  }
+]

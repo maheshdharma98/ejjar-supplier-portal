@@ -1,0 +1,740 @@
+[
+  {
+    "id": "res-001",
+    "supplier_id": "sup-001",
+    "category": "manpower",
+    "subcategory": "mason",
+    "status": "available",
+    "availability_start": "2026-06-05",
+    "availability_end": "2026-09-30",
+    "specs": {
+      "experience_years": 8,
+      "certifications": ["CITB", "Oman OSHA"],
+      "nationality": "Indian",
+      "daily_rate_usd": 45,
+      "language": ["English", "Hindi"],
+      "quantity_available": 12
+    }
+  },
+  {
+    "id": "res-002",
+    "supplier_id": "sup-002",
+    "category": "manpower",
+    "subcategory": "electrician",
+    "status": "available",
+    "availability_start": "2026-06-10",
+    "availability_end": "2026-12-31",
+    "specs": {
+      "experience_years": 6,
+      "certifications": ["IEE", "Saudi SASO"],
+      "nationality": "Filipino",
+      "daily_rate_usd": 60,
+      "language": ["English", "Tagalog"],
+      "quantity_available": 8
+    }
+  },
+  {
+    "id": "res-003",
+    "supplier_id": "sup-004",
+    "category": "manpower",
+    "subcategory": "welder",
+    "status": "booked",
+    "availability_start": "2026-07-01",
+    "availability_end": "2026-10-31",
+    "specs": {
+      "experience_years": 10,
+      "certifications": ["AWS D1.1", "3G/4G"],
+      "nationality": "Pakistani",
+      "daily_rate_usd": 55,
+      "language": ["English", "Urdu"],
+      "quantity_available": 6
+    }
+  },
+  {
+    "id": "res-004",
+    "supplier_id": "sup-006",
+    "category": "manpower",
+    "subcategory": "plumber",
+    "status": "available",
+    "availability_start": "2026-06-08",
+    "availability_end": "2026-11-30",
+    "specs": {
+      "experience_years": 5,
+      "certifications": ["CSWIP", "Qatar MMUP"],
+      "nationality": "Nepali",
+      "daily_rate_usd": 42,
+      "language": ["English", "Nepali"],
+      "quantity_available": 10
+    }
+  },
+  {
+    "id": "res-005",
+    "supplier_id": "sup-001",
+    "category": "manpower",
+    "subcategory": "crane_operator",
+    "status": "available",
+    "availability_start": "2026-06-15",
+    "availability_end": "2026-09-15",
+    "specs": {
+      "experience_years": 12,
+      "certifications": ["CPCS A60", "Oman Ministry of Manpower"],
+      "nationality": "Indian",
+      "daily_rate_usd": 85,
+      "language": ["English", "Hindi"],
+      "quantity_available": 3
+    }
+  },
+  {
+    "id": "res-006",
+    "supplier_id": "sup-010",
+    "category": "manpower",
+    "subcategory": "scaffolder",
+    "status": "available",
+    "availability_start": "2026-06-20",
+    "availability_end": "2026-10-20",
+    "specs": {
+      "experience_years": 4,
+      "certifications": ["CISRS Basic", "ARAMCO Safety"],
+      "nationality": "Pakistani",
+      "daily_rate_usd": 38,
+      "language": ["English", "Urdu", "Arabic"],
+      "quantity_available": 15
+    }
+  },
+  {
+    "id": "res-007",
+    "supplier_id": "sup-014",
+    "category": "manpower",
+    "subcategory": "painter",
+    "status": "available",
+    "availability_start": "2026-06-07",
+    "availability_end": "2026-12-07",
+    "specs": {
+      "experience_years": 7,
+      "certifications": ["SSPC PC-2"],
+      "nationality": "Indian",
+      "daily_rate_usd": 36,
+      "language": ["English", "Hindi", "Arabic"],
+      "quantity_available": 9
+    }
+  },
+  {
+    "id": "res-008",
+    "supplier_id": "sup-012",
+    "category": "manpower",
+    "subcategory": "carpenter",
+    "status": "maintenance",
+    "availability_start": "2026-07-10",
+    "availability_end": "2026-11-10",
+    "specs": {
+      "experience_years": 9,
+      "certifications": ["City & Guilds Carpentry"],
+      "nationality": "Sri Lankan",
+      "daily_rate_usd": 40,
+      "language": ["English", "Sinhala"],
+      "quantity_available": 7
+    }
+  },
+  {
+    "id": "res-009",
+    "supplier_id": "sup-006",
+    "category": "manpower",
+    "subcategory": "rigger",
+    "status": "available",
+    "availability_start": "2026-06-12",
+    "availability_end": "2026-09-12",
+    "specs": {
+      "experience_years": 11,
+      "certifications": ["LEEA", "Qatar Petroleum Approved"],
+      "nationality": "Indian",
+      "daily_rate_usd": 70,
+      "language": ["English", "Hindi"],
+      "quantity_available": 5
+    }
+  },
+  {
+    "id": "res-010",
+    "supplier_id": "sup-005",
+    "category": "manpower",
+    "subcategory": "safety_officer",
+    "status": "booked",
+    "availability_start": "2026-08-01",
+    "availability_end": "2027-01-31",
+    "specs": {
+      "experience_years": 14,
+      "certifications": ["NEBOSH IGC", "IOSH Managing Safely", "ISO 45001 Lead Auditor"],
+      "nationality": "British",
+      "daily_rate_usd": 150,
+      "language": ["English", "Arabic"],
+      "quantity_available": 2
+    }
+  },
+  {
+    "id": "res-011",
+    "supplier_id": "sup-008",
+    "category": "manpower",
+    "subcategory": "surveyor",
+    "status": "available",
+    "availability_start": "2026-06-18",
+    "availability_end": "2026-12-18",
+    "specs": {
+      "experience_years": 13,
+      "certifications": ["RICS", "AutoCAD Civil 3D"],
+      "nationality": "Egyptian",
+      "daily_rate_usd": 130,
+      "language": ["Arabic", "English"],
+      "quantity_available": 2
+    }
+  },
+  {
+    "id": "res-012",
+    "supplier_id": "sup-003",
+    "category": "manpower",
+    "subcategory": "hvac_tech",
+    "status": "available",
+    "availability_start": "2026-06-05",
+    "availability_end": "2026-12-05",
+    "specs": {
+      "experience_years": 7,
+      "certifications": ["EPA 608", "UAE ESMA HVAC"],
+      "nationality": "Filipino",
+      "daily_rate_usd": 65,
+      "language": ["English", "Tagalog"],
+      "quantity_available": 6
+    }
+  },
+  {
+    "id": "res-013",
+    "supplier_id": "sup-001",
+    "category": "machinery",
+    "subcategory": "excavator",
+    "status": "available",
+    "availability_start": "2026-06-06",
+    "availability_end": "2026-10-06",
+    "specs": {
+      "brand": "Caterpillar",
+      "model": "CAT 320",
+      "year": 2023,
+      "bucket_capacity_m3": 0.9,
+      "operating_weight_tonnes": 21,
+      "daily_rate_usd": 450,
+      "with_operator": true,
+      "fuel_included": false
+    }
+  },
+  {
+    "id": "res-014",
+    "supplier_id": "sup-003",
+    "category": "machinery",
+    "subcategory": "tower_crane",
+    "status": "booked",
+    "availability_start": "2026-07-15",
+    "availability_end": "2027-01-15",
+    "specs": {
+      "brand": "Liebherr",
+      "model": "LTM 1350-6.2",
+      "year": 2022,
+      "max_load_tonnes": 12,
+      "jib_length_m": 60,
+      "daily_rate_usd": 1200,
+      "with_operator": true,
+      "erection_included": true
+    }
+  },
+  {
+    "id": "res-015",
+    "supplier_id": "sup-006",
+    "category": "machinery",
+    "subcategory": "mobile_crane",
+    "status": "available",
+    "availability_start": "2026-06-10",
+    "availability_end": "2026-11-10",
+    "specs": {
+      "brand": "Grove",
+      "model": "GMK5130-2",
+      "year": 2021,
+      "max_load_tonnes": 130,
+      "boom_length_m": 68,
+      "daily_rate_usd": 900,
+      "with_operator": true,
+      "mobilization_fee_usd": 2500
+    }
+  },
+  {
+    "id": "res-016",
+    "supplier_id": "sup-007",
+    "category": "machinery",
+    "subcategory": "loader",
+    "status": "available",
+    "availability_start": "2026-06-08",
+    "availability_end": "2026-09-08",
+    "specs": {
+      "brand": "Volvo",
+      "model": "L120H",
+      "year": 2022,
+      "bucket_capacity_m3": 3.5,
+      "operating_weight_tonnes": 20.5,
+      "daily_rate_usd": 380,
+      "with_operator": true,
+      "fuel_included": false
+    }
+  },
+  {
+    "id": "res-017",
+    "supplier_id": "sup-004",
+    "category": "machinery",
+    "subcategory": "compressor",
+    "status": "available",
+    "availability_start": "2026-06-05",
+    "availability_end": "2026-12-31",
+    "specs": {
+      "brand": "Atlas Copco",
+      "model": "XRVS 1000",
+      "year": 2023,
+      "output_cfm": 1000,
+      "pressure_bar": 24,
+      "daily_rate_usd": 220,
+      "trailer_mounted": true,
+      "fuel_included": false
+    }
+  },
+  {
+    "id": "res-018",
+    "supplier_id": "sup-013",
+    "category": "machinery",
+    "subcategory": "generator",
+    "status": "maintenance",
+    "availability_start": "2026-07-01",
+    "availability_end": "2026-12-01",
+    "specs": {
+      "brand": "Caterpillar",
+      "model": "C18 ACERT",
+      "year": 2021,
+      "power_kva": 600,
+      "fuel_type": "Diesel",
+      "daily_rate_usd": 300,
+      "trailer_mounted": true,
+      "with_electrician": false
+    }
+  },
+  {
+    "id": "res-019",
+    "supplier_id": "sup-008",
+    "category": "machinery",
+    "subcategory": "forklift",
+    "status": "available",
+    "availability_start": "2026-06-12",
+    "availability_end": "2026-11-30",
+    "specs": {
+      "brand": "Toyota",
+      "model": "8FD50",
+      "year": 2022,
+      "capacity_tonnes": 5,
+      "lift_height_m": 6,
+      "fuel_type": "LPG",
+      "daily_rate_usd": 160,
+      "with_operator": true
+    }
+  },
+  {
+    "id": "res-020",
+    "supplier_id": "sup-012",
+    "category": "machinery",
+    "subcategory": "concrete_mixer",
+    "status": "available",
+    "availability_start": "2026-06-10",
+    "availability_end": "2026-10-10",
+    "specs": {
+      "brand": "Schwing Stetter",
+      "model": "AM 8 C",
+      "year": 2022,
+      "drum_capacity_m3": 8,
+      "transit_mix": true,
+      "daily_rate_usd": 280,
+      "with_driver": true
+    }
+  },
+  {
+    "id": "res-021",
+    "supplier_id": "sup-007",
+    "category": "machinery",
+    "subcategory": "bulldozer",
+    "status": "booked",
+    "availability_start": "2026-08-01",
+    "availability_end": "2026-12-31",
+    "specs": {
+      "brand": "Komatsu",
+      "model": "D65EX-18",
+      "year": 2023,
+      "operating_weight_tonnes": 22,
+      "blade_width_m": 3.8,
+      "daily_rate_usd": 500,
+      "with_operator": true,
+      "fuel_included": false
+    }
+  },
+  {
+    "id": "res-022",
+    "supplier_id": "sup-001",
+    "category": "machinery",
+    "subcategory": "backhoe",
+    "status": "available",
+    "availability_start": "2026-06-06",
+    "availability_end": "2026-10-31",
+    "specs": {
+      "brand": "JCB",
+      "model": "3CX Pro",
+      "year": 2021,
+      "bucket_capacity_m3": 0.28,
+      "max_dig_depth_m": 5.9,
+      "daily_rate_usd": 310,
+      "with_operator": true
+    }
+  },
+  {
+    "id": "res-023",
+    "supplier_id": "sup-002",
+    "category": "vehicles",
+    "subcategory": "sedan",
+    "status": "available",
+    "availability_start": "2026-06-05",
+    "availability_end": "2026-12-31",
+    "specs": {
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2025,
+      "seats": 5,
+      "fuel_type": "Petrol",
+      "daily_rate_usd": 55,
+      "with_driver": false,
+      "ac": true,
+      "quantity_available": 10
+    }
+  },
+  {
+    "id": "res-024",
+    "supplier_id": "sup-009",
+    "category": "vehicles",
+    "subcategory": "suv",
+    "status": "available",
+    "availability_start": "2026-06-05",
+    "availability_end": "2026-12-31",
+    "specs": {
+      "make": "Toyota",
+      "model": "Land Cruiser 200",
+      "year": 2024,
+      "seats": 7,
+      "fuel_type": "Petrol",
+      "daily_rate_usd": 120,
+      "with_driver": true,
+      "ac": true,
+      "4wd": true,
+      "quantity_available": 5
+    }
+  },
+  {
+    "id": "res-025",
+    "supplier_id": "sup-010",
+    "category": "vehicles",
+    "subcategory": "pickup",
+    "status": "booked",
+    "availability_start": "2026-07-01",
+    "availability_end": "2026-10-31",
+    "specs": {
+      "make": "Ford",
+      "model": "F-150",
+      "year": 2023,
+      "payload_kg": 900,
+      "fuel_type": "Petrol",
+      "daily_rate_usd": 70,
+      "with_driver": false,
+      "quantity_available": 8
+    }
+  },
+  {
+    "id": "res-026",
+    "supplier_id": "sup-003",
+    "category": "vehicles",
+    "subcategory": "van",
+    "status": "available",
+    "availability_start": "2026-06-07",
+    "availability_end": "2026-12-07",
+    "specs": {
+      "make": "Mercedes-Benz",
+      "model": "Sprinter 313 CDI",
+      "year": 2024,
+      "payload_kg": 1200,
+      "volume_m3": 11,
+      "fuel_type": "Diesel",
+      "daily_rate_usd": 90,
+      "with_driver": true,
+      "quantity_available": 6
+    }
+  },
+  {
+    "id": "res-027",
+    "supplier_id": "sup-014",
+    "category": "vehicles",
+    "subcategory": "minibus",
+    "status": "available",
+    "availability_start": "2026-06-09",
+    "availability_end": "2026-12-09",
+    "specs": {
+      "make": "Toyota",
+      "model": "Coaster",
+      "year": 2023,
+      "seats": 30,
+      "fuel_type": "Diesel",
+      "daily_rate_usd": 150,
+      "with_driver": true,
+      "ac": true,
+      "quantity_available": 3
+    }
+  },
+  {
+    "id": "res-028",
+    "supplier_id": "sup-006",
+    "category": "vehicles",
+    "subcategory": "bus",
+    "status": "available",
+    "availability_start": "2026-06-15",
+    "availability_end": "2026-11-15",
+    "specs": {
+      "make": "Volvo",
+      "model": "B8R",
+      "year": 2022,
+      "seats": 55,
+      "fuel_type": "Diesel",
+      "daily_rate_usd": 280,
+      "with_driver": true,
+      "ac": true,
+      "quantity_available": 2
+    }
+  },
+  {
+    "id": "res-029",
+    "supplier_id": "sup-007",
+    "category": "vehicles",
+    "subcategory": "truck",
+    "status": "in_transit",
+    "availability_start": "2026-06-20",
+    "availability_end": "2026-10-20",
+    "specs": {
+      "make": "MAN",
+      "model": "TGS 26.480",
+      "year": 2023,
+      "payload_tonnes": 15,
+      "fuel_type": "Diesel",
+      "daily_rate_usd": 220,
+      "with_driver": true,
+      "quantity_available": 4
+    }
+  },
+  {
+    "id": "res-030",
+    "supplier_id": "sup-011",
+    "category": "vehicles",
+    "subcategory": "tanker",
+    "status": "available",
+    "availability_start": "2026-06-06",
+    "availability_end": "2026-12-06",
+    "specs": {
+      "make": "Isuzu",
+      "model": "FVZ Water Tanker",
+      "year": 2024,
+      "capacity_litres": 10000,
+      "material": "Stainless Steel",
+      "daily_rate_usd": 200,
+      "with_driver": true,
+      "pump_included": true,
+      "quantity_available": 3
+    }
+  },
+  {
+    "id": "res-031",
+    "supplier_id": "sup-009",
+    "category": "vehicles",
+    "subcategory": "flatbed",
+    "status": "available",
+    "availability_start": "2026-06-08",
+    "availability_end": "2026-11-08",
+    "specs": {
+      "make": "Scania",
+      "model": "R450 Flatbed",
+      "year": 2022,
+      "payload_tonnes": 20,
+      "platform_length_m": 9,
+      "fuel_type": "Diesel",
+      "daily_rate_usd": 260,
+      "with_driver": true,
+      "loading_ramps": true,
+      "quantity_available": 2
+    }
+  },
+  {
+    "id": "res-032",
+    "supplier_id": "sup-015",
+    "category": "vehicles",
+    "subcategory": "refrigerated_van",
+    "status": "available",
+    "availability_start": "2026-06-10",
+    "availability_end": "2026-12-10",
+    "specs": {
+      "make": "Ford",
+      "model": "Transit Refrigerated",
+      "year": 2024,
+      "payload_kg": 1000,
+      "temp_range_c": "-20 to +5",
+      "fuel_type": "Diesel",
+      "daily_rate_usd": 130,
+      "with_driver": true,
+      "quantity_available": 2
+    }
+  },
+  {
+    "id": "res-033",
+    "supplier_id": "sup-005",
+    "category": "shipping",
+    "subcategory": "small_parcel",
+    "status": "available",
+    "availability_start": "2026-06-05",
+    "availability_end": "2026-12-31",
+    "specs": {
+      "max_weight_kg": 30,
+      "max_dimensions_cm": "60x40x40",
+      "service_type": "Express",
+      "delivery_days": 2,
+      "price_per_unit_usd": 15,
+      "coverage": ["Bahrain", "Saudi Arabia", "UAE"],
+      "tracking": true
+    }
+  },
+  {
+    "id": "res-034",
+    "supplier_id": "sup-009",
+    "category": "shipping",
+    "subcategory": "large_package",
+    "status": "available",
+    "availability_start": "2026-06-05",
+    "availability_end": "2026-12-31",
+    "specs": {
+      "max_weight_kg": 200,
+      "max_dimensions_cm": "200x120x120",
+      "service_type": "Standard",
+      "delivery_days": 5,
+      "price_per_unit_usd": 80,
+      "coverage": ["UAE", "Oman", "Qatar", "Bahrain"],
+      "tracking": true,
+      "liftgate_required": true
+    }
+  },
+  {
+    "id": "res-035",
+    "supplier_id": "sup-011",
+    "category": "shipping",
+    "subcategory": "pallet",
+    "status": "available",
+    "availability_start": "2026-06-06",
+    "availability_end": "2026-12-31",
+    "specs": {
+      "pallet_type": "Euro (120x80cm)",
+      "max_weight_kg": 1000,
+      "max_height_cm": 180,
+      "service_type": "LTL",
+      "price_per_pallet_usd": 120,
+      "delivery_days": 4,
+      "coverage": ["GCC"],
+      "stackable": true
+    }
+  },
+  {
+    "id": "res-036",
+    "supplier_id": "sup-008",
+    "category": "shipping",
+    "subcategory": "bulk_cargo",
+    "status": "booked",
+    "availability_start": "2026-07-01",
+    "availability_end": "2026-10-31",
+    "specs": {
+      "cargo_types": ["Sand", "Gravel", "Aggregates", "Cement"],
+      "max_load_tonnes": 30,
+      "vessel_type": "Bulk Carrier",
+      "price_per_tonne_usd": 18,
+      "min_order_tonnes": 100,
+      "coverage": ["Saudi Arabia", "Oman", "UAE"],
+      "port_handling_included": false
+    }
+  },
+  {
+    "id": "res-037",
+    "supplier_id": "sup-015",
+    "category": "shipping",
+    "subcategory": "cold_chain",
+    "status": "available",
+    "availability_start": "2026-06-10",
+    "availability_end": "2026-12-10",
+    "specs": {
+      "temp_range_c": "-25 to +4",
+      "container_type": "Reefer 20ft",
+      "max_load_tonnes": 18,
+      "monitoring": "Real-time IoT",
+      "price_per_day_usd": 350,
+      "coverage": ["Qatar", "UAE", "Bahrain"],
+      "haccp_certified": true
+    }
+  },
+  {
+    "id": "res-038",
+    "supplier_id": "sup-013",
+    "category": "shipping",
+    "subcategory": "hazmat",
+    "status": "available",
+    "availability_start": "2026-06-12",
+    "availability_end": "2026-11-30",
+    "specs": {
+      "un_classes_handled": ["UN Class 3", "UN Class 8", "UN Class 9"],
+      "packaging": "UN Certified",
+      "documentation": ["MSDS", "DG Declaration", "Packing Certificate"],
+      "price_per_shipment_usd": 600,
+      "coverage": ["Kuwait", "Saudi Arabia"],
+      "licensed_carriers": true
+    }
+  },
+  {
+    "id": "res-039",
+    "supplier_id": "sup-009",
+    "category": "shipping",
+    "subcategory": "empty_return",
+    "status": "in_transit",
+    "availability_start": "2026-06-07",
+    "availability_end": "2026-09-07",
+    "specs": {
+      "vehicle_type": "40ft Container Truck",
+      "origin": "Abu Dhabi",
+      "destination": "Dubai",
+      "discount_percent": 50,
+      "price_usd": 300,
+      "available_slots": 3,
+      "collection_date": "2026-06-20"
+    }
+  },
+  {
+    "id": "res-040",
+    "supplier_id": "sup-011",
+    "category": "shipping",
+    "subcategory": "oversized",
+    "status": "available",
+    "availability_start": "2026-06-15",
+    "availability_end": "2026-11-15",
+    "specs": {
+      "max_weight_tonnes": 200,
+      "max_length_m": 30,
+      "max_width_m": 5,
+      "escort_vehicles_included": true,
+      "permits_handled": true,
+      "price_per_km_usd": 12,
+      "min_distance_km": 50,
+      "coverage": ["Oman", "UAE"]
+    }
+  }
+]
