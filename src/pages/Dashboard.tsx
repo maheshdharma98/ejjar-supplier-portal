@@ -64,7 +64,7 @@ export default function Dashboard() {
   }, [])
 
   const kpis = [
-    { label: t('dashboard.active_rfqs'), value: activeRfqs, icon: FileText, color: 'bg-blue-50 text-[#1A4FBA]' },
+    { label: t('dashboard.active_rfqs'), value: activeRfqs, icon: FileText, color: 'bg-blue-50 text-[#192433]' },
     { label: t('dashboard.active_jobs'), value: activeJobs, icon: Briefcase, color: 'bg-green-50 text-green-700' },
     { label: t('dashboard.total_resources'), value: totalResources, icon: Boxes, color: 'bg-purple-50 text-purple-700' },
     { label: t('dashboard.avg_rating'), value: avgRating, icon: Star, color: 'bg-amber-50 text-amber-700' },
@@ -80,7 +80,7 @@ export default function Dashboard() {
           id="tour-start-btn"
           variant="outline"
           size="sm"
-          className="gap-2 border-[#1A4FBA] text-[#1A4FBA] hover:bg-[#1A4FBA] hover:text-white transition-colors"
+          className="gap-2 border-[#192433] text-[#192433] hover:bg-[#192433] hover:text-white transition-colors"
           onClick={() => setTourRunning(true)}
         >
           <Play className="h-3.5 w-3.5" />
@@ -124,8 +124,8 @@ export default function Dashboard() {
             key: 'Manpower',
             label: 'MANPOWER',
             bg: '#F8FAFF',
-            dot: '#1A4FBA',
-            stroke: '#1A4FBA',
+            dot: '#192433',
+            stroke: '#192433',
             trend: '+12%',
             trendClass: 'bg-green-50 text-green-700',
           },
@@ -260,7 +260,7 @@ export default function Dashboard() {
                 upcomingJobs.map((job) => {
                   const rfq = rfqs.find((r) => r.id === job.rfq_id)
                   return (
-                    <div key={job.id} className="rounded-lg border p-3 space-y-2 hover:border-[#1A4FBA]/30 transition-colors cursor-pointer" onClick={() => navigate('/jobs')}>
+                    <div key={job.id} className="rounded-lg border p-3 space-y-2 hover:border-[#192433]/30 transition-colors cursor-pointer" onClick={() => navigate('/jobs')}>
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-mono text-slate-500">{job.id}</span>
                         <Badge variant={JOB_STATUS_VARIANT[job.status] || 'outline'} className="text-xs">

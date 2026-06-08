@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import ejjarLogoBlack from '@/assets/Ejjar_logo_black.svg'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -53,14 +54,15 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-[#1A4FBA] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-[#192433] flex items-center justify-center p-4">
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader className="text-center pb-2 pt-8">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1A4FBA] text-white text-3xl font-bold shadow-lg">
-            E
-          </div>
-          <h1 className="text-2xl font-bold text-slate-900">EJJAR</h1>
-          <p className="text-base font-semibold text-[#1A4FBA]">{t('login.title')}</p>
+          <img
+            src={ejjarLogoBlack}
+            alt="EJJAR"
+            style={{ height: '80px', width: 'auto', display: 'block', margin: '0 auto 24px' }}
+          />
+          <p className="text-base font-semibold text-[#192433]">{t('login.title')}</p>
           <p className="text-sm text-slate-500 mt-1">{t('login.subtitle')}</p>
         </CardHeader>
         <CardContent className="pb-8 pt-6">
@@ -97,7 +99,7 @@ export default function Login() {
                       value={digit}
                       onChange={(e) => handleOtpChange(i, e.target.value)}
                       onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                      className="h-12 w-12 rounded-md border border-input bg-background text-center text-lg font-bold focus:outline-none focus:ring-2 focus:ring-[#1A4FBA]"
+                      className="h-12 w-12 rounded-md border border-input bg-background text-center text-lg font-bold focus:outline-none focus:ring-2 focus:ring-[#192433]"
                     />
                   ))}
                 </div>
@@ -109,7 +111,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => setStep('phone')}
-                className="w-full text-sm text-slate-500 hover:text-[#1A4FBA] transition-colors"
+                className="w-full text-sm text-slate-500 hover:text-[#192433] transition-colors"
               >
                 ← Change phone number
               </button>

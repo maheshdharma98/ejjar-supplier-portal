@@ -128,7 +128,7 @@ export default function RFQDetail() {
 
               <div>
                 <p className="text-xs text-slate-500 mb-2">{t('rfq_detail.attachments')}</p>
-                <div className="flex items-center gap-2 text-sm text-[#1A4FBA] hover:underline cursor-pointer">
+                <div className="flex items-center gap-2 text-sm text-[#192433] hover:underline cursor-pointer">
                   <Paperclip className="h-4 w-4" />
                   {t('rfq_detail.sample_doc')}
                 </div>
@@ -149,10 +149,10 @@ export default function RFQDetail() {
                   return (
                     <div key={step} className="relative pb-6 last:pb-0">
                       {i < STATUS_STEPS.length - 1 && (
-                        <div className={`absolute left-[-14px] top-5 h-full w-0.5 ${done ? 'bg-[#1A4FBA]' : 'bg-slate-200'}`} />
+                        <div className={`absolute left-[-14px] top-5 h-full w-0.5 ${done ? 'bg-[#192433]' : 'bg-slate-200'}`} />
                       )}
                       <div className={`absolute left-[-20px] top-1 h-4 w-4 rounded-full border-2 ${
-                        active ? 'bg-[#1A4FBA] border-[#1A4FBA]' : done ? 'bg-[#1A4FBA] border-[#1A4FBA]' : 'bg-white border-slate-300'
+                        active ? 'bg-[#192433] border-[#192433]' : done ? 'bg-[#192433] border-[#192433]' : 'bg-white border-slate-300'
                       }`} />
                       <div>
                         <p className={`text-sm font-medium capitalize ${done ? 'text-slate-900' : 'text-slate-400'}`}>
@@ -231,7 +231,7 @@ export default function RFQDetail() {
                         <label key={res.id} className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 rounded p-1">
                           <button type="button" onClick={() => toggleResource(res.id)}>
                             {checkedResources.has(res.id)
-                              ? <CheckSquare className="h-4 w-4 text-[#1A4FBA]" />
+                              ? <CheckSquare className="h-4 w-4 text-[#192433]" />
                               : <Square className="h-4 w-4 text-slate-400" />}
                           </button>
                           <span className="text-sm capitalize">{res.subcategory} — {res.id}</span>

@@ -51,14 +51,14 @@ export function Navbar({ onMenuClick }: NavbarProps) {
       <div className="flex items-center gap-2 md:gap-4">
         <button
           onClick={switchLang}
-          className="text-sm font-medium text-slate-600 hover:text-[#1A4FBA] transition-colors px-2 py-1 rounded whitespace-nowrap"
+          className="text-sm font-medium text-slate-600 hover:text-[#192433] transition-colors px-2 py-1 rounded whitespace-nowrap"
         >
           {i18n.language === 'en' ? 'EN | عربي' : 'عربي | EN'}
         </button>
 
         <div className="flex items-center gap-2">
           <Avatar className="h-8 w-8 shrink-0">
-            <AvatarFallback className="bg-[#1A4FBA] text-white text-xs">
+            <AvatarFallback className="bg-[#192433] text-white text-xs">
               {initials}
             </AvatarFallback>
           </Avatar>

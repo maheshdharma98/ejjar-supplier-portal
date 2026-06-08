@@ -93,7 +93,7 @@ export function DemoTour({ run, onEnd }: DemoTourProps) {
       scrollToFirstStep
       onEvent={handleEvent}
       options={{
-        primaryColor: '#1A4FBA',
+        primaryColor: '#192433',
         overlayColor: 'rgba(15, 23, 42, 0.55)',
         overlayClickAction: false,
         showProgress: true,
@@ -119,7 +119,7 @@ export function DemoTour({ run, onEnd }: DemoTourProps) {
           padding: '4px 0 0',
         },
         buttonPrimary: {
-          backgroundColor: '#1A4FBA',
+          backgroundColor: '#192433',
           borderRadius: 8,
           fontSize: 13,
           padding: '8px 18px',

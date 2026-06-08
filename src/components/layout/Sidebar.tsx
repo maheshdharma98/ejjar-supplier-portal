@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { LayoutDashboard, FileText, Boxes, Briefcase, Star, Settings, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import ejjarLogoWhite from '@/assets/Ejjar_logo_white.svg'
 
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, key: 'dashboard', tourId: undefined },
@@ -34,14 +35,9 @@ export function Sidebar({ open, onClose }: SidebarProps) {
     >
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-5 border-b border-white/10">
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#1A4FBA] font-bold text-white text-lg">
-            E
-          </div>
-          <div className="min-w-0">
-            <div className="font-bold text-white text-sm leading-tight">EJJAR</div>
-            <div className="text-xs text-slate-400 leading-tight truncate">{t('login.title')}</div>
-          </div>
+        <div className="flex flex-col gap-1 min-w-0">
+          <img src={ejjarLogoWhite} alt="EJJAR" style={{ height: '40px', width: 'auto' }} />
+          <div className="text-xs text-slate-400 leading-tight truncate">{t('login.title')}</div>
         </div>
         <button
           onClick={onClose}
@@ -64,7 +60,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
               cn(
                 'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-[#1A4FBA] text-white'
+                  ? 'bg-[#192433] text-white'
                   : 'text-slate-400 hover:bg-white/5 hover:text-white'
               )
             }

@@ -14,9 +14,12 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#1A4FBA",
+          DEFAULT: "#192433",
           foreground: "#ffffff",
         },
+        'ejjar-navy': '#192433',
+        'ejjar-gold': '#BB8D5A',
+        'ejjar-orange': '#E3803F',
         sidebar: "#0F172A",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
