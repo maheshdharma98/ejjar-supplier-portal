@@ -19,18 +19,25 @@ interface SidebarProps {
 }
 
 export function Sidebar({ open, onClose }: SidebarProps) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isRtl = i18n.language === 'ar'
 
   return (
     <aside
+      style={{
+        position: 'fixed',
+        top: 0,
+        // JS-driven RTL: avoids Tailwind variant CSS-scan timing issues
+        ...(isRtl ? { right: 0 } : { left: 0 }),
+      }}
       className={cn(
-        'flex h-screen w-60 flex-col bg-[#0F172A] text-white fixed top-0 z-40 transition-transform duration-300',
-        // RTL: pin to right side; LTR: pin to left side
-        'ltr:left-0 rtl:right-0',
+        'flex h-screen w-60 flex-col bg-[#0F172A] text-white z-40 transition-transform duration-300',
         // Mobile: slide off-canvas when closed, visible when open; Desktop: always visible
         open
           ? 'translate-x-0'
-          : 'ltr:-translate-x-full rtl:translate-x-full lg:translate-x-0'
+          : isRtl
+            ? 'translate-x-full lg:translate-x-0'
+            : '-translate-x-full lg:translate-x-0'
       )}
     >
       {/* Header */}

@@ -1,284 +1,276 @@
-import { useMemo, useState } from 'react'
+// EJJAR Design System v1.0
+import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { FileText, Briefcase, Boxes, Star, ExternalLink, Play } from 'lucide-react'
-import { format } from 'date-fns'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { DemoTour } from '@/components/DemoTour'
-import { rfqs, jobs, resources, reviews, CURRENT_SUPPLIER_ID, maskContractor } from '@/utils/mockData'
+import {
+  FileText, Briefcase, Boxes, Star, ExternalLink,
+  MapPin, Zap, Users, Truck,
+} from 'lucide-react'
+import { StatCard }         from '@/components/ui/StatCard'
+import { StatusBadge }      from '@/components/ui/StatusBadge'
+import { CategoryChip }     from '@/components/ui/CategoryChip'
+import { CategoryBarChart } from '@/components/ui/CategoryBarChart'
+import { EmptyState }       from '@/components/ui/EmptyState'
+import {
+  DEMO_RFQS,
+  DEMO_JOBS,
+  SUPPLIER_PROFILE,
+  getLocalField,
+} from '@/data/supplierDemoData'
 
-const JOB_STATUS_VARIANT: Record<string, 'default' | 'success' | 'warning' | 'danger' | 'info' | 'outline'> = {
-  in_progress: 'success',
-  completed: 'default',
-  pending: 'warning',
-}
-const JOB_STATUS_LABEL: Record<string, string> = {
-  in_progress: 'In Progress',
-  completed: 'Completed',
-  pending: 'Pending',
-}
-
-const STATUS_VARIANT: Record<string, 'default' | 'success' | 'warning' | 'danger' | 'info' | 'outline'> = {
-  new: 'info',
-  supplier_responded: 'warning',
-  negotiation: 'default',
-  awarded: 'success',
-  declined: 'danger',
+// ── Job icon lookup by category ───────────────────────────────────────
+const JOB_ICON_MAP: Record<string, { bg: string; iconCls: string; icon: React.ElementType }> = {
+  manpower:   { bg: 'bg-[rgba(230,126,58,0.10)]',  iconCls: 'text-brand-orange', icon: Users  },
+  machinery:  { bg: 'bg-[rgba(77,168,199,0.12)]',  iconCls: 'text-brand-sky',    icon: Boxes  },
+  shipping:   { bg: 'bg-[rgba(148,163,184,0.15)]', iconCls: 'text-ink-sub',      icon: Truck  },
+  electrical: { bg: 'bg-[rgba(77,168,199,0.12)]',  iconCls: 'text-brand-sky',    icon: Zap    },
+  default:    { bg: 'bg-[rgba(77,168,199,0.12)]',  iconCls: 'text-brand-sky',    icon: Zap    },
 }
 
-const STATUS_LABEL: Record<string, string> = {
-  new: 'New',
-  supplier_responded: 'Responded',
-  negotiation: 'Negotiation',
-  awarded: 'Awarded',
-  declined: 'Declined',
+function getJobIcon(category: string, title: string) {
+  const lower = (title + ' ' + category).toLowerCase()
+  if (lower.includes('wiring') || lower.includes('electrical')) return JOB_ICON_MAP.electrical
+  return JOB_ICON_MAP[category.toLowerCase()] ?? JOB_ICON_MAP.default
 }
 
-export default function Dashboard() {
-  const { t } = useTranslation()
+// ── Compact job row — horizontal inside grid-cols-3 ───────────────────
+function JobRow({ job, borderRight, lang }: {
+  job:         typeof DEMO_JOBS[number]
+  borderRight: boolean
+  lang:        string
+}) {
   const navigate = useNavigate()
-  const [tourRunning, setTourRunning] = useState(false)
-
-  const myReviews = useMemo(() => reviews.filter((r) => r.supplier_id === CURRENT_SUPPLIER_ID), [])
-  const avgRating = myReviews.length
-    ? (myReviews.reduce((s, r) => s + r.rating, 0) / myReviews.length).toFixed(1)
-    : '—'
-
-  const activeRfqs = rfqs.filter((r) => r.status === 'new' || r.status === 'negotiation').length
-  const activeJobs = jobs.filter((j) => j.supplier_id === CURRENT_SUPPLIER_ID && j.status === 'in_progress').length
-  const totalResources = resources.filter((r) => r.supplier_id === CURRENT_SUPPLIER_ID).length
-
-  const recentRfqs = [...rfqs].sort((a, b) => b.created_at.localeCompare(a.created_at)).slice(0, 5)
-  const inProgressJobs = jobs.filter((j) => j.status === 'in_progress')
-  const upcomingJobs = (inProgressJobs.length > 0 ? inProgressJobs : jobs).slice(0, 3)
-
-  const categoryKpis = useMemo(() => {
-    const counts: Record<string, number> = {}
-    rfqs.forEach((r) => {
-      const key = r.category.charAt(0).toUpperCase() + r.category.slice(1)
-      counts[key] = (counts[key] || 0) + 1
-    })
-    return counts
-  }, [])
-
-  const kpis = [
-    { label: t('dashboard.active_rfqs'), value: activeRfqs, icon: FileText, color: 'bg-blue-50 text-[#192433]' },
-    { label: t('dashboard.active_jobs'), value: activeJobs, icon: Briefcase, color: 'bg-green-50 text-green-700' },
-    { label: t('dashboard.total_resources'), value: totalResources, icon: Boxes, color: 'bg-purple-50 text-purple-700' },
-    { label: t('dashboard.avg_rating'), value: avgRating, icon: Star, color: 'bg-amber-50 text-amber-700' },
-  ]
+  const { bg, iconCls, icon: Icon } = getJobIcon(
+    getLocalField(job as unknown as Record<string, unknown>, 'category', 'en'),
+    getLocalField(job as unknown as Record<string, unknown>, 'title', 'en')
+  )
 
   return (
-    <div className="w-full min-w-0 space-y-6">
-      <DemoTour run={tourRunning} onEnd={() => setTourRunning(false)} />
-
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900">{t('dashboard.title')}</h1>
-        <Button
-          id="tour-start-btn"
-          variant="outline"
-          size="sm"
-          className="gap-2 border-[#192433] text-[#192433] hover:bg-[#192433] hover:text-white transition-colors"
-          onClick={() => setTourRunning(true)}
-        >
-          <Play className="h-3.5 w-3.5" />
-          Start Tour
-        </Button>
+    <div
+      onClick={() => navigate('/jobs')}
+      className={`flex items-center gap-[10px] px-[14px] py-[9px] hover:bg-page cursor-pointer transition-colors${borderRight ? ' border-e border-card-border' : ''}`}
+    >
+      <div className={`w-[30px] h-[30px] rounded-[8px] flex items-center justify-center shrink-0 ${bg}`}>
+        <Icon size={15} strokeWidth={1.75} className={iconCls} />
       </div>
 
-      {/* KPI Cards */}
-      <div id="tour-kpi-cards" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {kpis.map(({ label, value, icon: Icon, color }) => (
-          <Card key={label}>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-slate-500">{label}</p>
-                  <p className="text-3xl font-bold text-slate-900 mt-1">{value}</p>
-                </div>
-                <div className={`p-3 rounded-xl ${color}`}>
-                  <Icon className="h-6 w-6" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="flex-1 min-w-0">
+        <div className="font-mono text-[9px] text-ink-dim leading-tight">{job.id}</div>
+        <div className="text-[11px] font-semibold text-ink mt-[1px] truncate leading-tight">
+          {getLocalField(job as unknown as Record<string, unknown>, 'title', lang)}
+        </div>
+        <div className="text-[10px] text-ink-sub mt-[1px] flex items-center gap-[2px] leading-tight">
+          <MapPin size={9} strokeWidth={1.75} className="shrink-0" />
+          🇴🇲 {getLocalField(job as unknown as Record<string, unknown>, 'city', lang)},{' '}
+          {lang === 'ar' ? 'عُمان' : 'Oman'}
+        </div>
       </div>
 
-      {/* RFQs by Category — KPI Grid + Sparklines */}
-      {(() => {
-        const sparkData = {
-          Manpower: [18, 22, 19, 28, 24, 30, 27],
-          Machinery: [10, 12, 11, 15, 13, 17, 16],
-          Vehicles: [8, 10, 9, 14, 12, 16, 15],
-          Shipping: [14, 13, 15, 11, 12, 10, 9],
-        }
-        const getPoints = (data: number[]) => {
-          const max = Math.max(...data)
-          return data.map((v, i) => `${(i / 6) * 100},${30 - (v / max) * 26}`).join(' ')
-        }
-        const cards = [
-          {
-            key: 'Manpower',
-            label: 'MANPOWER',
-            bg: '#F8FAFF',
-            dot: '#192433',
-            stroke: '#192433',
-            trend: '+12%',
-            trendClass: 'bg-green-50 text-green-700',
-          },
-          {
-            key: 'Machinery',
-            label: 'MACHINERY',
-            bg: '#FFFBEB',
-            dot: '#F59E0B',
-            stroke: '#F59E0B',
-            trend: '+5%',
-            trendClass: 'bg-green-50 text-green-700',
-          },
-          {
-            key: 'Vehicles',
-            label: 'VEHICLES',
-            bg: '#F0FDF4',
-            dot: '#22C55E',
-            stroke: '#22C55E',
-            trend: '+8%',
-            trendClass: 'bg-green-50 text-green-700',
-          },
-          {
-            key: 'Shipping',
-            label: 'SHIPPING',
-            bg: '#FAF5FF',
-            dot: '#8B5CF6',
-            stroke: '#8B5CF6',
-            trend: '-2%',
-            trendClass: 'bg-red-50 text-red-700',
-          },
-        ]
-        return (
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-            <div className="flex items-center justify-between">
-              <span className="font-semibold text-gray-900 text-lg">RFQs by Category</span>
-              <span className="text-sm text-gray-500">This Month</span>
+      <div className="flex flex-col items-end gap-[3px] shrink-0">
+        <StatusBadge status={job.status} lang={lang} />
+        <span className="text-[10px] text-ink-dim leading-tight">{job.startDate}</span>
+      </div>
+    </div>
+  )
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────
+export default function Dashboard() {
+  const { t, i18n } = useTranslation()
+  const navigate    = useNavigate()
+  const lang        = i18n.language
+
+  const activeRfqs     = DEMO_RFQS.length
+  const activeJobs     = DEMO_JOBS.filter((j) => j.status === 'in_progress').length
+  const totalResources = SUPPLIER_PROFILE.totalResources
+  const avgRating      = SUPPLIER_PROFILE.rating.toFixed(1)
+
+  const categoryData = useMemo(() => {
+    const counts: Record<string, number> = {}
+    DEMO_RFQS.forEach((r) => {
+      const key = r.category.toLowerCase()
+      counts[key] = (counts[key] || 0) + 1
+    })
+    return [
+      { category: 'Manpower',  value: counts['manpower']  ?? 0, trend: '+12%' },
+      { category: 'Machinery', value: counts['machinery'] ?? 0, trend: '+5%'  },
+      { category: 'Shipping',  value: counts['shipping']  ?? 0, trend: '+8%'  },
+    ]
+  }, [])
+
+  return (
+    <div className="flex flex-col gap-[12px] w-full min-w-0">
+
+      {/* ── ZONE 1: Stats strip ───────────────────────────────────── */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-[8px]">
+        <StatCard
+          label={t('dashboard.active_rfqs')}
+          value={activeRfqs}
+          icon={FileText}
+          trend="up"
+          trendValue="+2"
+          colorVariant="sky"
+        />
+        <StatCard
+          label={t('dashboard.active_jobs')}
+          value={activeJobs}
+          icon={Briefcase}
+          trend="flat"
+          trendValue="—"
+          colorVariant="green"
+        />
+        <StatCard
+          label={t('dashboard.total_resources')}
+          value={totalResources}
+          icon={Boxes}
+          colorVariant="navy"
+        />
+        <StatCard
+          label={t('dashboard.avg_rating')}
+          value={avgRating}
+          icon={Star}
+          trend="up"
+          trendValue="+0.1"
+          colorVariant="orange"
+        />
+      </div>
+
+      {/* ── ZONE 2: Chart (340px fixed) + RFQ table (1fr) ─────────── */}
+      <div
+        className="grid gap-[10px]"
+        style={{ gridTemplateColumns: 'min(340px, 100%) 1fr' }}
+      >
+        {/* Chart card */}
+        <div className="bg-white border border-card-border rounded-[13px] shadow-card overflow-hidden">
+          <div className="flex items-center justify-between px-[14px] py-[10px] border-b border-card-border">
+            <div>
+              <h3 className="text-[12px] font-semibold text-ink leading-tight">
+                {lang === 'ar' ? 'الطلبات حسب الفئة' : 'RFQs by Category'}
+              </h3>
+              <p className="text-[10px] text-ink-dim mt-[1px]">
+                {lang === 'ar' ? 'آخر 30 يوماً' : 'Last 30 days'}
+              </p>
             </div>
-            <p className="text-sm text-gray-500 mt-1">Last 30 days performance</p>
-            <div className="mt-5 grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {cards.map((c) => (
-                <div key={c.key} style={{ background: c.bg, borderRadius: 12, padding: 14 }}>
-                  <div className="flex items-center gap-2">
-                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: c.dot, display: 'inline-block', flexShrink: 0 }} />
-                    <span className="uppercase text-xs tracking-wider text-gray-500 font-medium">{c.label}</span>
-                  </div>
-                  <div className="flex items-end justify-between mt-2">
-                    <span className="text-3xl font-bold text-gray-900">{categoryKpis[c.key] ?? 0}</span>
-                    <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${c.trendClass}`}>{c.trend}</span>
-                  </div>
-                  <svg viewBox="0 0 100 30" preserveAspectRatio="none" className="w-full h-8 mt-2">
-                    <polyline
-                      points={getPoints(sparkData[c.key as keyof typeof sparkData])}
-                      fill="none"
-                      stroke={c.stroke}
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              ))}
-            </div>
+            <span className="text-[10px] text-ink-dim bg-page px-[7px] py-[2px] rounded-[5px] border border-card-border">
+              {lang === 'ar' ? 'هذا الشهر' : 'This Month'}
+            </span>
           </div>
-        )
-      })()}
+          <div className="px-[14px] py-[12px]">
+            <CategoryBarChart data={categoryData} lang={lang} />
+          </div>
+        </div>
 
-      {/* Recent RFQs */}
-      <div id="tour-recent-rfqs">
-        <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-base">{t('dashboard.recent_rfqs')}</CardTitle>
-              <Button variant="link" size="sm" onClick={() => navigate('/rfqs')} className="text-xs">
-                {t('dashboard.view_all')}
-              </Button>
-            </CardHeader>
-            <CardContent className="p-0">
-              {recentRfqs.length === 0 ? (
-                <p className="text-center text-slate-500 py-8 text-sm">{t('dashboard.no_recent_rfqs')}</p>
-              ) : (
-                <div className="overflow-x-auto">
-                  <table className="w-full min-w-[640px] text-sm">
-                    <thead className="border-b bg-slate-50">
-                      <tr>
-                        <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase">ID</th>
-                        <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase">Category</th>
-                        <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase">Country</th>
-                        <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase">Date</th>
-                        <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase">Status</th>
-                        <th className="px-4 py-3"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {recentRfqs.map((rfq) => (
-                        <tr key={rfq.id} className="border-b last:border-0 hover:bg-slate-50 transition-colors">
-                          <td className="px-4 py-3 font-mono text-xs text-slate-600">{rfq.id}</td>
-                          <td className="px-4 py-3 capitalize">{rfq.category}</td>
-                          <td className="px-4 py-3 text-slate-600">{rfq.country}</td>
-                          <td className="px-4 py-3 text-slate-500 text-xs">{format(new Date(rfq.created_at), 'dd MMM yyyy')}</td>
-                          <td className="px-4 py-3">
-                            <Badge variant={STATUS_VARIANT[rfq.status] || 'outline'}>
-                              {STATUS_LABEL[rfq.status] || rfq.status}
-                            </Badge>
-                          </td>
-                          <td id="tour-rfq-actions" className="px-4 py-3">
-                            <Button variant="ghost" size="icon" onClick={() => navigate(`/rfqs/${rfq.id}`)}>
-                              <ExternalLink className="h-3.5 w-3.5" />
-                            </Button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+        {/* Recent RFQs table */}
+        <div className="bg-white border border-card-border rounded-[13px] shadow-card overflow-hidden min-w-0">
+          <div className="flex items-center justify-between px-[14px] py-[10px] border-b border-card-border">
+            <h3 className="text-[12px] font-semibold text-ink">
+              {t('dashboard.recent_rfqs')}
+            </h3>
+            <button
+              onClick={() => navigate('/rfqs')}
+              className="text-[11px] font-medium text-brand-sky hover:underline"
+            >
+              {t('dashboard.view_all')}
+            </button>
+          </div>
+
+          {DEMO_RFQS.length === 0 ? (
+            <EmptyState icon={<FileText size={32} />} title={t('dashboard.no_recent_rfqs')} />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[420px]">
+                <thead>
+                  <tr className="bg-page">
+                    {['ID', 'Category', 'Country', 'Date', 'Status', ''].map((h, i) => (
+                      <th
+                        key={i}
+                        className="text-start text-[9px] font-semibold text-ink-dim uppercase tracking-[0.8px] whitespace-nowrap"
+                        style={{ padding: '7px 12px' }}
+                      >
+                        {h === 'ID'        ? (lang === 'ar' ? 'رقم'     : 'ID')
+                        : h === 'Category' ? (lang === 'ar' ? 'الفئة'   : 'Category')
+                        : h === 'Country'  ? (lang === 'ar' ? 'الدولة'  : 'Country')
+                        : h === 'Date'     ? (lang === 'ar' ? 'التاريخ' : 'Date')
+                        : h === 'Status'   ? (lang === 'ar' ? 'الحالة'  : 'Status')
+                        : ''}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {DEMO_RFQS.map((rfq) => (
+                    <tr
+                      key={rfq.id}
+                      className="border-b border-card-border hover:bg-page transition-colors cursor-pointer"
+                      onClick={() => navigate(`/rfqs/${rfq.id}`)}
+                    >
+                      <td style={{ padding: '9px 12px' }}>
+                        <span className="font-mono text-[10px] text-ink-dim">{rfq.id}</span>
+                      </td>
+                      <td style={{ padding: '9px 12px' }}>
+                        <CategoryChip category={rfq.category} lang={lang} />
+                      </td>
+                      <td className="text-[11px] text-ink" style={{ padding: '9px 12px' }}>
+                        🇴🇲 {lang === 'ar' ? 'عُمان' : 'Oman'}
+                      </td>
+                      <td style={{ padding: '9px 12px' }}>
+                        <span className="text-[10px] text-ink-dim whitespace-nowrap">
+                          {rfq.receivedAt.split('T')[0]}
+                        </span>
+                      </td>
+                      <td style={{ padding: '9px 12px' }}>
+                        <StatusBadge status={rfq.status} lang={lang} />
+                      </td>
+                      <td style={{ padding: '9px 12px' }} onClick={(e) => e.stopPropagation()}>
+                        <button
+                          onClick={() => navigate(`/rfqs/${rfq.id}`)}
+                          className="w-[24px] h-[24px] rounded-[6px] flex items-center justify-center bg-page text-ink-dim hover:bg-[rgba(77,168,199,0.10)] hover:text-brand-sky border border-card-border transition-colors"
+                        >
+                          <ExternalLink size={12} strokeWidth={1.75} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Upcoming Jobs */}
-      <div id="tour-upcoming-jobs">
-        <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-base">{t('dashboard.upcoming_jobs')}</CardTitle>
-              <Button variant="link" size="sm" onClick={() => navigate('/jobs')} className="text-xs">
-                {t('dashboard.view_all')}
-              </Button>
-            </CardHeader>
-            <CardContent className="space-y-3 pt-0">
-              {upcomingJobs.length === 0 ? (
-                <p className="text-center text-slate-500 py-4 text-sm">{t('dashboard.no_upcoming_jobs')}</p>
-              ) : (
-                upcomingJobs.map((job) => {
-                  const rfq = rfqs.find((r) => r.id === job.rfq_id)
-                  return (
-                    <div key={job.id} className="rounded-lg border p-3 space-y-2 hover:border-[#192433]/30 transition-colors cursor-pointer" onClick={() => navigate('/jobs')}>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono text-slate-500">{job.id}</span>
-                        <Badge variant={JOB_STATUS_VARIANT[job.status] || 'outline'} className="text-xs">
-                          {JOB_STATUS_LABEL[job.status] || job.status}
-                        </Badge>
-                      </div>
-                      <p className="text-sm font-medium capitalize">{rfq?.category || '—'}</p>
-                      <p className="text-xs text-slate-500">
-                        {format(new Date(job.start_date), 'dd MMM')} – {format(new Date(job.end_date), 'dd MMM yyyy')}
-                      </p>
-                      <p className="text-xs text-slate-500">{job.city}, {job.country}</p>
-                      <p className="text-xs text-slate-600">{job.allocated_resources.length} resource group(s)</p>
-                    </div>
-                  )
-                })
-              )}
-            </CardContent>
-          </Card>
+      {/* ── ZONE 3: Upcoming jobs — grid-cols-3 ──────────────────── */}
+      <div className="bg-white border border-card-border rounded-[13px] shadow-card overflow-hidden">
+        <div className="flex items-center justify-between px-[14px] py-[10px] border-b border-card-border">
+          <div>
+            <h3 className="text-[12px] font-semibold text-ink">
+              {t('dashboard.upcoming_jobs')}
+            </h3>
+            <p className="text-[10px] text-ink-dim mt-[1px]">
+              {lang === 'ar' ? 'مجدولة وجارية' : 'Scheduled & in progress'}
+            </p>
+          </div>
+          <button
+            onClick={() => navigate('/jobs')}
+            className="text-[11px] font-medium text-brand-sky hover:underline"
+          >
+            {t('dashboard.view_all')}
+          </button>
+        </div>
+
+        {DEMO_JOBS.length === 0 ? (
+          <EmptyState icon={<Briefcase size={32} />} title={t('dashboard.no_upcoming_jobs')} />
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {DEMO_JOBS.slice(0, 3).map((job, i, arr) => (
+              <JobRow
+                key={job.id}
+                job={job}
+                borderRight={i < arr.length - 1}
+                lang={lang}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
     </div>

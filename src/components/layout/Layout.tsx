@@ -18,8 +18,8 @@ export function Layout() {
 
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      {/* Content area: offset by sidebar width (240px) on desktop */}
-      <div className="flex flex-col min-h-screen lg:ml-[240px]">
+      {/* Content area: sp-main class applies LTR/RTL margin via index.css media query */}
+      <div className="flex flex-col min-h-screen sp-main">
         <Navbar onMenuClick={() => setSidebarOpen((o) => !o)} />
         <main className="flex-1 p-4 md:p-6 overflow-y-auto overflow-x-hidden">
           <Outlet />

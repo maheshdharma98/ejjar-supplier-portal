@@ -1,6 +1,6 @@
 import { Joyride, STATUS, type Step, type EventData } from 'react-joyride'
 
-const STEPS: Step[] = [
+const STEPS_EN: Step[] = [
   {
     target: 'body',
     placement: 'center',
@@ -73,12 +73,89 @@ const STEPS: Step[] = [
   },
 ]
 
+const STEPS_AR: Step[] = [
+  {
+    target: 'body',
+    placement: 'center',
+    title: '👋 مرحباً بك في إيجار',
+    content: 'أنت مورّد على منصة إيجار — سوق يربط المقاولين بموردي الموارد في دول الخليج. ستأخذك هذه الجولة عبر سير العمل الكامل.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-kpi-cards',
+    placement: 'bottom',
+    title: '📊 لوحة التحكم',
+    content: 'اطّلع دفعةً واحدة على طلبات العروض النشطة، والمهام الجارية، وإجمالي مواردك، ومتوسط تقييمك.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-sidebar-rfqs',
+    placement: 'right',
+    title: '📥 صندوق طلبات العروض',
+    content: 'تظهر هنا طلبات عروض الأسعار الجديدة من المقاولين. كل طلب هو فرصة للفوز بمهمة.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-recent-rfqs',
+    placement: 'top',
+    title: '🔍 فتح طلب عرض',
+    content: 'انقر على أي صف لعرض التفاصيل الكاملة — نطاق العمل، الموقع، التواريخ المطلوبة، والمرفقات.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-rfq-actions',
+    placement: 'left',
+    title: '💬 تقديم عرضك',
+    content: 'أدخل سعرك، اختر الموارد التي ستخصصها، أضف ملاحظاتك، ثم اضغط إرسال. يمكنك أيضاً تقديم عرض مضاد أو الرفض.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-kpi-cards',
+    placement: 'bottom',
+    title: '⏳ انتظار القرار',
+    content: 'يراجع المقاول جميع العروض المقدمة جنباً إلى جنب ويختار الأفضل. تتحدث حالة طلبك تلقائياً.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-sidebar-rfqs',
+    placement: 'right',
+    title: '🎉 تم قبول عرضك!',
+    content: 'عند فوز عرضك، تتغير حالة الطلب إلى "مُرسى". ستجده مُميَّزاً في قائمة طلباتك.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-upcoming-jobs',
+    placement: 'top',
+    title: '🏗️ إنشاء المهمة',
+    content: 'تُنشأ المهمة تلقائياً من الطلب المُرسى. تظهر مهامك القادمة هنا ويبدأ التتبع فوراً.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-sidebar-jobs',
+    placement: 'right',
+    title: '✅ وضع علامة مكتمل',
+    content: 'انتقل إلى صفحة المهام لمتابعة التقدم. عند الانتهاء من العمل، ضع علامة مكتمل على المهمة.',
+    skipBeacon: true,
+  },
+  {
+    target: '#tour-sidebar-reviews',
+    placement: 'right',
+    title: '⭐ استلام تقييم',
+    content: 'بعد الإتمام، يترك المقاول تقييماً وملاحظات. التقييمات الممتازة ترفع ترتيبك وتساعدك على الفوز بمزيد من الطلبات.',
+    skipBeacon: true,
+  },
+]
+
 interface DemoTourProps {
   run: boolean
   onEnd: () => void
+  lang?: string
 }
 
-export function DemoTour({ run, onEnd }: DemoTourProps) {
+export function DemoTour({ run, onEnd, lang = 'en' }: DemoTourProps) {
+  const isAr = lang === 'ar'
+  const steps = isAr ? STEPS_AR : STEPS_EN
+
   function handleEvent(data: EventData) {
     if (data.status === STATUS.FINISHED || data.status === STATUS.SKIPPED) {
       onEnd()
@@ -87,7 +164,7 @@ export function DemoTour({ run, onEnd }: DemoTourProps) {
 
   return (
     <Joyride
-      steps={STEPS}
+      steps={steps}
       run={run}
       continuous
       scrollToFirstStep
@@ -107,6 +184,8 @@ export function DemoTour({ run, onEnd }: DemoTourProps) {
           borderRadius: 12,
           boxShadow: '0 20px 40px rgba(0,0,0,0.18)',
           padding: '20px 24px',
+          direction: isAr ? 'rtl' : 'ltr',
+          textAlign: isAr ? 'right' : 'left',
         },
         tooltipTitle: {
           fontSize: 15,
@@ -135,7 +214,13 @@ export function DemoTour({ run, onEnd }: DemoTourProps) {
           fontSize: 12,
         },
       }}
-      locale={{
+      locale={isAr ? {
+        back: '→ رجوع',
+        close: 'إغلاق',
+        last: 'إنهاء الجولة',
+        nextWithProgress: 'التالي ({current} من {total})',
+        skip: 'تخطي الجولة',
+      } : {
         back: '← Back',
         close: 'Close',
         last: 'Finish Tour',

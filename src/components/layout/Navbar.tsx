@@ -4,6 +4,7 @@ import { LogOut, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { useAuthStore } from '@/store/authStore'
+import { SUPPLIER_PROFILE } from '../../data/supplierDemoData'
 
 interface NavbarProps {
   onMenuClick: () => void
@@ -12,7 +13,8 @@ interface NavbarProps {
 export function Navbar({ onMenuClick }: NavbarProps) {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
-  const { supplierName, logout } = useAuthStore()
+  const { logout } = useAuthStore()
+  const displayName = i18n.language === 'ar' ? SUPPLIER_PROFILE.companyAr : SUPPLIER_PROFILE.company
 
   function switchLang() {
     const next = i18n.language === 'en' ? 'ar' : 'en'
@@ -27,7 +29,7 @@ export function Navbar({ onMenuClick }: NavbarProps) {
     navigate('/login')
   }
 
-  const initials = supplierName
+  const initials = SUPPLIER_PROFILE.company
     .split(' ')
     .slice(0, 2)
     .map((w) => w[0])
@@ -63,7 +65,7 @@ export function Navbar({ onMenuClick }: NavbarProps) {
             </AvatarFallback>
           </Avatar>
           <span className="hidden md:block text-sm font-medium text-slate-700 max-w-[160px] truncate">
-            {supplierName}
+            {displayName}
           </span>
         </div>
 
